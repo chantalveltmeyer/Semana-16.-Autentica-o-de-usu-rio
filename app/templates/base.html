@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Avaliação contínua: Aula 090{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a class="navbar-brand" href="{{ url_for('main.index') }}">
+        Avaliação contínua: <strong>Aula 090</strong>
+      </a>
+      <div class="navbar-links">
+        <a href="{{ url_for('main.index') }}">Home</a>
+      </div>
+      <div class="navbar-right">
+        {% if session.get('user_id') %}
+          <form method="post" action="{{ url_for('main.logout') }}">
+            <button class="nav-button" type="submit">Log Out</button>
+          </form>
+        {% else %}
+          <a href="{{ url_for('main.login') }}">Log In</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <section class="messages">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </section>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

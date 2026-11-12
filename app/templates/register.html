@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Flasky - Cadastro{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Bem-vindo ao Flasky</p>
+  <h1>Criar uma conta</h1>
+  <p>Após o cadastro, confirme seu e-mail para identificar sua conta como confirmada.</p>
+</section>
+<section class="panel narrow">
+  <h2>Novo usuário</h2>
+  <form method="post" autocomplete="off">
+    <label>Nome completo
+      <input name="name" required maxlength="120" placeholder="Nome completo">
+    </label>
+    <label>Nome de usuário
+      <input name="username" required maxlength="50" placeholder="usuario">
+    </label>
+    <label>E-mail
+      <input type="email" name="email" required placeholder="usuario@email.com">
+    </label>
+    <label>Senha
+      <input type="password" name="password" required minlength="8" placeholder="Mínimo de 8 caracteres">
+    </label>
+    <button type="submit">Cadastrar usuário</button>
+  </form>
+  <p class="hint">Já possui cadastro? <a href="{{ url_for('main.login') }}">Voltar ao login</a>.</p>
+</section>
+{% endblock %}

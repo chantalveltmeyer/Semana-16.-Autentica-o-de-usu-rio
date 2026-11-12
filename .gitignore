@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+instance/
+*.sqlite
+*.sqlite3
+*.db
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+backups/
+*.tar.gz
+*.log

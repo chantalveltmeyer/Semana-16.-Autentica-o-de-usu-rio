@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Home - Avaliação contínua: Aula 090{% endblock %}
+{% block content %}
+<section class="page-header">
+  {% if logged_user %}
+    <h1>Olá, {{ logged_user.name }}!</h1>
+  {% else %}
+    <h1>Olá, Desconhecido!</h1>
+  {% endif %}
+</section>
+
+{% if logged_user %}
+<section class="users-section">
+  <div class="section-head">
+    <h2>Usuários cadastrados</h2>
+    <a href="{{ url_for('main.register') }}">Cadastrar novo usuário</a>
+  </div>
+
+  {% if users %}
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Usuário</th>
+          <th>E-mail</th>
+          <th>Confirmado</th>
+          <th>Função</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{% if user.confirmed %}Sim{% else %}Não{% endif %}</td>
+          <td>{{ user.role }}</td>
+          <td class="actions">
+            <a href="{{ url_for('main.edit_user', user_id=user.id) }}">Editar</a>
+            <form method="post"
+                  action="{{ url_for('main.delete_user', user_id=user.id) }}"
+                  onsubmit="return confirm('Deseja realmente excluir este usuário?')">
+              <button class="link-button" type="submit">Excluir</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <p>Nenhum usuário cadastrado.</p>
+  {% endif %}
+</section>
+{% endif %}
+{% endblock %}

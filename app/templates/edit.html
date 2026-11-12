@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Editar usuário{% endblock %}
+{% block content %}
+<section class="panel narrow">
+  <a class="back" href="{{ url_for('main.index') }}">← Voltar</a>
+  <h1>Editar usuário</h1>
+  <p class="muted">Altere os dados abaixo. Deixe a senha em branco para manter a atual.</p>
+  <form method="post">
+    <label>Nome completo
+      <input name="name" value="{{ user.name }}" required>
+    </label>
+    <label>Nome de usuário
+      <input name="username" value="{{ user.username }}" required>
+    </label>
+    <label>E-mail
+      <input type="email" name="email" value="{{ user.email }}" required>
+    </label>
+    <label>Nova senha (opcional)
+      <input type="password" name="password" minlength="8">
+    </label>
+    <button type="submit">Salvar alterações</button>
+  </form>
+</section>
+{% endblock %}

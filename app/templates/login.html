@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Flasky - Entrar{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Bem-vindo ao Flasky</p>
+  <h1>Entrar no sistema</h1>
+  <p>Faça login para visualizar os usuários cadastrados.</p>
+</section>
+<section class="panel narrow">
+  <h2>Login</h2>
+  <form method="post" autocomplete="on">
+    <label>Nome de usuário
+      <input name="username" required autocomplete="username" placeholder="Seu usuário">
+    </label>
+    <label>Senha
+      <input type="password" name="password" required autocomplete="current-password" placeholder="Sua senha">
+    </label>
+    <button type="submit">Entrar</button>
+  </form>
+  <p class="hint">Ainda não possui cadastro? <a href="{{ url_for('main.register') }}">Cadastre-se</a>.</p>
+</section>
+{% endblock %}
